@@ -68,6 +68,13 @@
     font-size: 14px;
 }
 
+.profile-content__list {
+    color: rgba(39, 140, 39, 0.96);
+    font-size: 14px;
+    padding-inline-start: 0;
+    list-style-position: inside;
+}
+
 @media only screen and (min-width: 800px) {
 
     .page {
