@@ -9,14 +9,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    align-self: center;
+    position: absolute;
     padding: 10px;
     margin: 5px;
-    border: 2px solid gray;
+    border: 2px solid #89A1BA;
     border-radius: 15px 15px 15px 15px;
+    background-color: #434E5B;
+    max-width: 350px;
+    color: white;
 }
 
 .gdpr-consent__description{
@@ -32,20 +33,24 @@
 }
 
 .gdpr-consent__button--accept {
-    background-color: #d5f5d5;
+    background-color: #89A1BA;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid gray;
+    border: transparent;
 }
 
 .gdpr-consent__button--accept:hover {
-    background-color: #c5e3c5;
+    background-color: #7C92A8;
 }
 
 .gdpr-consent__button--reject {
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid gray;
+    border: transparent;
+}
+
+.gdpr-consent__button--reject:hover {
+    background-color: #7C92A8;
 }
 
 .hide{
