@@ -28,8 +28,40 @@
     </ul>
 </nav>
 
-<div class="page">
+<div class="page fx-row">
+    <section class="contact">
 
+        <h1 id="contact-header">Contact</h1>
+    
+        <form method="post" class="form-contact">
+    
+          <div>
+            <div class="form-contactpagina__inputelement fx-col">
+                <label for="name">Voornaam: </label>
+                <input type="text" name="firstname" id="firstname" required>
+            </div>
+            <div class="form-contactpagina__inputelement fx-col">
+                <label for="name">Achternaam: </label>
+                <input type="text" name="Lastname" id="lastname" required>
+            </div>
+          </div>
+    
+          <div class="form-contactpagina__inputelement fx-col">
+            <label for="email">Email: </label>
+            <input type="email" name="email" id="email">
+          </div>
+
+          <div class="form-contactpagina__inputelement fx-col">
+            <label for="phone-number">Telefoonnummer: </label>
+            <input name="phone-number" type="tel" id="phone-number" pattern="^\d{2}-\d{8}$">
+          </div>
+    
+          <div class="form-contactpagina__inputelement">
+            <input type="submit" value="Verstuur!">
+          </div>
+        </form>
+      </section>
+    </div>
 </div>
 
 </body>
