@@ -19,7 +19,7 @@ class GDPR {
             this.saveMetaData();
             this.cookieStatus('reject');
             this.hideGDPR();
-        })
+        });
     }
 
     resetContent(){
@@ -62,8 +62,7 @@ class GDPR {
     showGDPR(){
         document.querySelector(`.gdpr-consent`).classList.add('show');
     }
-
 }
 
-const gdpr = new GDPR();
+export {GDPR};
 

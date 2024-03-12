@@ -5,117 +5,33 @@
     <title>CV Thimo Bosma</title>
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/gdpr-style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <script defer src="js/gdpr.js"></script>
-    <script defer src="js/navbar.js"></script>
+    <script type="module" src="modules/app.js"></script>
 </head>
 
 <body>
 
-<nav>
-    <div class="logo"><h1>Showcase</h1></div>
-    <div class="openMenu"><i class="fa fa-bars"></i></div>
-    <ul class="mainMenu">
-        <li><a href="index.html">Curriculum vitae</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <div class="closeMenu"><i class="fa fa-times"></i></div>
-        <span class="icons">
-            <i class="fab fa-facebook"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-twitter"></i>
-            <i class="fab fa-github"></i>
-        </span>
-    </ul>
-</nav>
-
-<div class="page">
-    <section class="personalia">
-
-        <img class="person-logo" src="images/ProfilePicture.jpg">
-        <h1 class="person-name">Thimo Bosma</h1>
- 
-    </section>
-
-    <section class="profile">
-
-        <section class="profile-content">
-
-            <div class="profile-content__category--hidden-mobile">
-                <h3 class="profile-content__category-title">Profiel</h3>
-                <hr>
-            </div>
-
-            <div class="profile-content__element--hidden-mobile">
-                <div class="profile-content__element-header">
+    <nav>
+        <div class="logo"><h1>Showcase</h1></div>
+        <div class="openMenu"><i class="fa fa-bars"></i></div>
+        <ul class="mainMenu">
+            <li><a href="#cv">Curriculum vitae</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+                <div class="dropdown">
+                    <a style="display: flex; flex-direction: row;" href="#register"><p>Account</p><i class="bi bi-person-circle" style="margin-left: 10px; font-size: 50px;"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#register">Register</a>
+                        <a href="#login">Log in</a>
+                    </div>
                 </div>
-                <p class="profile-content__description">
-                    Ik ben Thimo Bosma. ik ben 20 jaar en ik studeer op het moment ICT op Hogeschool Windesheim Zwolle. Als software developer ben ik bekwaam in het ontwikkelen van applicaties en het vinden van oplossingen naar technische problemen.
-                <p>
-            </div>
+            </li>
+            <div class="closeMenu"><i class="fa fa-times"></i></div>
+        </ul>
+    </nav>
 
-
-            <div class="profile-content__category">
-                <h3 class="profile-content__category-title">Opleidingen</h3>
-                <hr>
-            </div>
-
-            <div class="profile-content__element">
-                <div class="profile-content__element-header">
-                    <h4 class="profile-content__title">VWO</h4>
-                    <p class="profile-content__period">sep 2016 - jun 2022</p>
-                </div>
-                <p class="profile-content__institute">Vechtdal college Ommen, Ommen</p>
-            </div>
-
-            <div class="profile-content__element">
-                <div class="profile-content__element-header">
-                    <h4 class="profile-content__title">HBO ICT</h4>
-                    <p class="profile-content__period">sep 2022 - nu</p>
-                </div>
-                <p class="profile-content__institute">Windesheim Hogeschool, Zwolle</p>
-            </div>
-
-            <div class="profile-content__category">
-                <h3 class="profile-content__category-title">Werkervaring</h3>
-                <hr>
-            </div>
-
-            <div class="profile-content__element">
-                <div class="profile-content__element-header">
-                    <h4 class="profile-content__title">Verkoop medewerker</h4>
-                    <p class="profile-content__period">sep 2022 - nu</p>
-                </div>
-                <p class="profile-content__institute">Karwei Ommen</p>
-            </div>
-
-            <div class="profile-content__category">
-                <h3 class="profile-content__category-title">Vaardigheden</h3>
-                <hr>
-            </div>
-
-            <div class="profile-content__element">
-                <h4 class="profile-content__title">Talen</h4>
-                <ul class="profile-content__list">
-                    <li>Nederlands</li>
-                    <li>Engels</li>
-                    <li>Duits</li>
-                </ul>
-            </div>
-
-            <div class="profile-content__element">
-                <h4 class="profile-content__title">Programmeertalen en -vaardigheden</h4>
-                <ul class="profile-content__list">
-                    <li>PHP</li>
-                    <li>Java</li>
-                    <li>Csharp</li>
-                    <li>Python</li>
-                    <li>SQL</li>
-                </ul>
-            </div>
-            
-        </section>
-
-    </section>
+    <main id="content"></main>
 
     <section class="gdpr-consent hide">
 
@@ -131,8 +47,6 @@
         </div>
 
     </section>
-
-</div>
 
 </body>
 

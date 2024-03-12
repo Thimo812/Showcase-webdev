@@ -1,69 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CV Thimo Bosma</title>
-    <link rel="stylesheet" href="stylesheets/style.css">
-    <link rel="stylesheet" href="stylesheets/gdpr-style.css">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <script defer src="js/gdpr.js"></script>
-    <script defer src="js/navbar.js"></script>
-</head>
+<script defer src="modules/ContactForm.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-<body>
-
-<nav>
-    <div class="logo"><h1>Showcase</h1></div>
-    <div class="openMenu"><i class="fa fa-bars"></i></div>
-    <ul class="mainMenu">
-        <li><a href="index.html">Curriculum vitae</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <div class="closeMenu"><i class="fa fa-times"></i></div>
-        <span class="icons">
-            <i class="fab fa-facebook"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-twitter"></i>
-            <i class="fab fa-github"></i>
-        </span>
-    </ul>
-</nav>
-
-<div class="page fx-row">
+<div class="page">
+    
     <section class="contact">
 
         <h1 id="contact-header">Contact</h1>
     
-        <form method="post" class="form-contact">
+        <form method="post" class="form-contactpagina">
     
-          <div>
-            <div class="form-contactpagina__inputelement fx-col">
+          <div class="form-contactpagina__inputelement fx-row">
+            <div class="form-contactpagina__namebox fx-col">
                 <label for="name">Voornaam: </label>
-                <input type="text" name="firstname" id="firstname" required>
+                <input type="text" name="firstname" id="firstname" maxlength="50" required>
             </div>
-            <div class="form-contactpagina__inputelement fx-col">
+            <div class="form-contactpagina__namebox fx-col">
                 <label for="name">Achternaam: </label>
-                <input type="text" name="Lastname" id="lastname" required>
+                <input type="text" name="Lastname" id="lastname" maxlength="50" required>
             </div>
           </div>
     
           <div class="form-contactpagina__inputelement fx-col">
             <label for="email">Email: </label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" maxlength="50" required>
           </div>
 
           <div class="form-contactpagina__inputelement fx-col">
-            <label for="phone-number">Telefoonnummer: </label>
-            <input name="phone-number" type="tel" id="phone-number" pattern="^\d{2}-\d{8}$">
+            <label for="phone-number">Telefoonnummer: (bijv. 06-12345678)</label>
+            <input name="phone-number" type="tel" id="phone-number" pattern="^\d{2}-\d{8}$" maxlength="11" required>
           </div>
+
+          <div class="g-recaptcha form-contactpagina__inputelement jc-center" data-sitekey="6Lf85YEpAAAAAArObzQrRMYVCKIsGcw2dOISZZRD"></div>
     
-          <div class="form-contactpagina__inputelement">
-            <input type="submit" value="Verstuur!">
+          <div class="form-contactpagina__submit">
+            <input type="submit" value="Verstuur">
           </div>
         </form>
-      </section>
-    </div>
+    </section>
 </div>
-
-</body>
-
-</html>
