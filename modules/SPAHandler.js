@@ -18,7 +18,7 @@ class SPAHandler {
         this.fetchContent(path)
             .then(html => {
                 content.innerHTML = html;
-                this.loadAllScripts();
+                this.loadAllScripts(path);
             })
             .catch(error => {
                 console.error('Error fetching content:', error);
@@ -39,10 +39,24 @@ class SPAHandler {
         }
     }
 
-    async loadAllScripts() {
-        this.loadScript("/modules/ContactForm.js");
-        this.loadScript("https://www.google.com/recaptcha/api.js");
+    async loadAllScripts(page) {
 
+        switch (page) {
+            case 'cv':
+                break;
+            case 'contact':
+                this.loadScript("/modules/ContactForm.js");
+                this.loadScript("https://www.google.com/recaptcha/api.js");
+                break;
+            case 'register':
+                this.loadScript("/modules/RegisterForm.js");
+                this.loadScript("https://www.google.com/recaptcha/api.js");
+                break;
+            case 'login':
+                this.loadScript("/modules/LoginForm.js");
+                this.loadScript("https://www.google.com/recaptcha/api.js");
+                break;
+        }
     }
 
     async loadScript(src) {

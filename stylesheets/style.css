@@ -166,12 +166,20 @@ display: block;
     list-style-position: inside;
 }
 
-#contact-header {
+.header {
     text-align: center;
     color: #89A1BA;
 }
 
 .contact {
+    margin: 10;
+    color: white;
+    font-size: 20px;
+    max-width: 500px;
+    width: 80%;
+}
+
+.register {
     margin: 10;
     color: white;
     font-size: 20px;
@@ -188,9 +196,11 @@ display: block;
 
 .form-contactpagina input {
     color: white;
-    height: 25px;
-    background-color: #44525E;
-    border: none;
+    background-color: transparent;
+    padding: 10px;
+    font-size: 20px;
+    border: 4px solid #44525E;
+    border-radius: 10px;
 }
 
 .form-contactpagina__submit {
@@ -209,6 +219,45 @@ display: block;
 .form-contactpagina__namebox {
     display: flex;
     flex-direction: row;
+}
+
+.form-contactpagina__submit input {
+    width: 40%;
+    background-color: #44525E;
+}
+
+.register-form input {
+    color: white;
+    background-color: transparent;
+    padding: 10px;
+    font-size: 20px;
+    border: 4px solid #44525E;
+    border-radius: 10px;
+}
+
+.register-form-inputelement {
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0px 15px 0px;
+    justify-content: space-between;
+}
+
+.register-form-submit {
+    display: flex;
+    justify-content: center;
+}
+
+.register-form-submit input {
+    width: 40%;
+    background-color: #44525E;
+}
+
+.register-error {
+    font-size: 15px;
+    background-color: #232A30;
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px solid darkred;
 }
 
 .fx-col{

@@ -1,0 +1,32 @@
+<div class="page" style="flex-direction: row;">
+
+    <section class="register">
+
+        <h1 class="header">Log in</h1>
+
+        <form method="post" class="register-form" id="loginform">
+
+            <div class="register-form-inputelement fx-col">
+                <label for="mail">Email:</label>
+                <input type="email" name="mail" id="mail" required maxlength="50">
+            </div>
+
+            <div class="register-form-inputelement fx-col">
+                <label for="password">Wachtwoord:</label>
+                <input type="password" name="password" id="password" required maxlength="50">
+            </div>
+
+            <div class="register-error" id="errorbox" style="display: none">
+                <span id="error-message">email incorrect</span>
+            </div>
+
+            <div class="g-recaptcha form-contactpagina__inputelement jc-center" data-sitekey="6Lf85YEpAAAAAArObzQrRMYVCKIsGcw2dOISZZRD"></div>
+
+            <div class="register-form-submit">
+                <input type="submit" value="Verstuur">
+            </div>
+
+        </form>
+    </section>
+
+</div>

@@ -1,5 +1,6 @@
 
-class ContactForm {
+class LoginForm {
+
     constructor() {
         this.addFormEventListeners();
         this.addCaptchaEventListeners();
@@ -7,42 +8,47 @@ class ContactForm {
 
     addFormEventListeners() {
 
-        const form = document.querySelector("form");
+        const form = document.getElementById("loginform");
 
         form.addEventListener("submit", async(event) => {
 
             event.preventDefault();
-        
+                    
             if (!grecaptcha.getResponse()) {
                 alert("Voer aub de Captcha in");
                 return;
             }
         
             var json = {
-                "FirstName": form.elements["firstname"].value,
-                "LastName": form.elements["lastname"].value,
-                "Email": form.elements["email"].value,
-                "Phone": form.elements["phone-number"].value
+                "email": form.elements['mail'].value,
+                "password": form.elements['password'].value
             };
         
             form.reset();
             grecaptcha.reset();
         
-            fetch('https://localhost:7241/api/ContactForm/CreateRequest', {
+            fetch('https://localhost:7241/api/account/login', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('bearer-token')
-                },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(json)
             }).then((response) => {
                 if (response.ok) {
-                    alert("Het contactverzoek is succesvol verzonden");
-                } else {
-                    alert("Er heeft een error plaatsgevonden, uw verzoek is niet verzonden");
+                    response.json().then((body) => {
+                        this.manageLogin(body);
+                    });
+                } else if (response.status == 401) {
+                    this.showError('Onjuiste gebruikersnaam of wachtwoord');
                 }
             });
         });
+    }
+
+    showError(message) {
+        const errorSpan = document.getElementById("error-message");
+        errorSpan.innerHTML = message;
+
+        const errorBox = document.getElementById("errorbox");
+        errorBox.style = "display: flex;"
     }
 
     addCaptchaEventListeners() {
@@ -57,8 +63,11 @@ class ContactForm {
         });
     }
 
+    manageLogin(body) {
+        localStorage.setItem('bearer-token', body.accessToken);
+        localStorage.setItem('refresh-token', body.refreshToken);
+        window.location.hash = '#cv';
+    }
 }
 
-const form = new ContactForm();
-
-
+const loginForm = new LoginForm();
