@@ -1,0 +1,7 @@
+.board {
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: repeat(5, 100px);
+    grid-template-rows: repeat(5, 100px);
+    grid-gap: 10px;
+}

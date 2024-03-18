@@ -1,0 +1,21 @@
+div {
+    width: 100px;
+    height: 100px;
+    border-radius: 10%;
+    box-sizing: border-box;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    font-weight: bold;
+    color: white;
+}
+
+div[status="correct"] {
+    background-color: green;
+}
+
+div[status="wrong-place"] {
+    background-color: orange;
+}

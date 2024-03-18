@@ -56,6 +56,10 @@ class SPAHandler {
                 this.loadScript("/modules/LoginForm.js");
                 this.loadScript("https://www.google.com/recaptcha/api.js");
                 break;
+            case 'game':
+                this.loadScript("/components/GameBoard.js");
+                this.loadScript("/components/Tile.js");
+                break;
         }
     }
 
