@@ -1,5 +1,5 @@
 
-class LoginForm {
+class LoginManager {
 
     constructor() {
         this.addFormEventListeners();
@@ -59,15 +59,45 @@ class LoginForm {
     onClick(e) {
         e.preventDefault();
         grecaptcha.enterprise.ready(async () => {
-        const token = await grecaptcha.enterprise.execute('6Le1XIEpAAAAALEZYkoqSBSKA8OeKu9xlTIli1W3', {action: 'LOGIN'});
+            const token = await grecaptcha.enterprise.execute('6Le1XIEpAAAAALEZYkoqSBSKA8OeKu9xlTIli1W3', {action: 'LOGIN'});
         });
     }
 
     manageLogin(body) {
+        this.loadingScreen();
         localStorage.setItem('bearer-token', body.accessToken);
         localStorage.setItem('refresh-token', body.refreshToken);
+        this.fetchUserName();
         window.location.hash = '#cv';
+    }
+
+    loadingScreen() {
+        window.location.hash = '#loading';
+        //document.getElementById('loading-message').innerText = "U wordt ingelogd";
+    }
+
+    fetchUserName() {
+        fetch('https://localhost:7241/api/User/GetUsername', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('bearer-token')}` 
+            }
+        }).then((response) => {
+            if (response.ok) {
+                response.text().then((data) => {
+                    localStorage.setItem("username", data);
+                    this.updateNavBar();
+                });
+            }
+        });
+    }
+
+    updateNavBar() {
+        document.getElementById("account-label").innerHTML = localStorage.getItem('username');
+        document.getElementById("register-button").style.display = 'none';
+        document.getElementById("login-button").style.display = 'none';
+        document.getElementById("logout-button").style.display = 'block';
     }
 }
 
-const loginForm = new LoginForm();
+const loginManager = new LoginManager();

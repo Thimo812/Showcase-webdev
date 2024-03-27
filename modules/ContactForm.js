@@ -28,11 +28,11 @@ class ContactForm {
             form.reset();
             grecaptcha.reset();
         
-            fetch('https://localhost:7241/api/ContactForm/CreateRequest', {
+            fetch('https://ca-showcasewebapp-app.yellowsky-37a5ad75.westeurope.azurecontainerapps.io/api/ContactForm/CreateRequest', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('bearer-token')
+                    'Authorization': `Bearer ${localStorage.getItem('bearer-token')}` 
                 },
                 body: JSON.stringify(json)
             }).then((response) => {

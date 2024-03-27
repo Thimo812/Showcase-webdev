@@ -53,7 +53,7 @@ class SPAHandler {
                 this.loadScript("https://www.google.com/recaptcha/api.js");
                 break;
             case 'login':
-                this.loadScript("/modules/LoginForm.js");
+                this.loadScript("/modules/LoginManager.js");
                 this.loadScript("https://www.google.com/recaptcha/api.js");
                 break;
             case 'game':

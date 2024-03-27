@@ -26,29 +26,51 @@ class RegisterForm {
                 alert("Voer aub de Captcha in");
                 return;
             }
+
+            form.reset();
+            grecaptcha.reset();
         
             var json = {
                 "email": form.elements['mail'].value,
                 "password": password
             };
-        
-            form.reset();
-            grecaptcha.reset();
-        
-            fetch('https://localhost:7241/api/account/register', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(json)
-            }).then((response) => {
-                if (response.ok) {
-                    alert("Uw account is aangemaakt");
-                } else {
-                    response.json().then((body) => {
-                        const errors = Object.values(body.errors).flat();
-                        this.showErrors(errors);
-                    });
-                }
-            });
+
+            this.register();
+            
+        });
+    }
+
+    async register(json) {
+        fetch('https://localhost:7241/api/account/register', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(json)
+        }).then((response) => {
+            if (response.ok) {
+                this.login(json);
+            } else {
+                response.json().then((body) => {
+                    const errors = Object.values(body.errors).flat();
+                    this.showErrors(errors);
+                });
+            }
+        });
+    }
+
+    login(json) {
+        fetch('https://localhost:7241/api/account/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(json)
+        }).then((response) => {
+            if (response.ok) {
+                response.json().then((body) => {
+                    window.location.hash = '#cv';
+                    localStorage.setItem('bearer-token', body.accessToken);
+                    localStorage.setItem('refresh-token', body.refreshToken);
+                    localStorage.setItem('username', body.username);
+                });
+            }
         });
     }
 
@@ -78,6 +100,8 @@ class RegisterForm {
         const token = await grecaptcha.enterprise.execute('6Le1XIEpAAAAALEZYkoqSBSKA8OeKu9xlTIli1W3', {action: 'LOGIN'});
         });
     }
+
+    
 }
 
 const registerForm = new RegisterForm();
