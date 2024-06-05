@@ -57,8 +57,8 @@ class SPAHandler {
                 this.loadScript("https://www.google.com/recaptcha/api.js");
                 break;
             case 'game':
-                this.loadScript("/components/GameBoard.js");
-                this.loadScript("/components/Tile.js");
+                this.loadModule("/modules/GameManager.js");
+                this.loadModule("/components/GameBoard.js");
                 break;
         }
     }
@@ -68,6 +68,17 @@ class SPAHandler {
             const script = document.createElement('script');
             script.src = src;
             script.defer = "";
+            script.onload = resolve;
+            script.onerror = reject;
+            document.body.appendChild(script);
+        });
+    }
+
+    async loadModule(src) {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.type = 'module';
             script.onload = resolve;
             script.onerror = reject;
             document.body.appendChild(script);

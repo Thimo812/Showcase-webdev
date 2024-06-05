@@ -1,13 +1,14 @@
+import GameEndedPopup from "./GameEndedPopup.js";
+import Tile from "./Tile.js";
+
 class GameBoard extends HTMLElement {
 
     shadowRoot;
+    popup;
     templateId = 'gameboard-template';
 
     wordLength = 5;
     rowCount = 6;
-
-    currentRow = 0;
-    currentColumn = 0;
 
     constructor() {
         super();
@@ -17,22 +18,27 @@ class GameBoard extends HTMLElement {
     connectedCallback() {
         this.applyTemplate();
         this.attachStyling();
-        this.applyEventListeners();
     }
 
     applyTemplate() {
         let template = document.getElementById(this.templateId);
         let clone = template.content.cloneNode(true);
-
         this.shadowRoot.appendChild(clone);
 
-        for(let i = 0; i < this.rowCount; i++) {
-            for(let a = 0; a < this.wordLength; a++) {
-                const tile = document.createElement('tile-element');
-                tile.setAttribute("column", a);
-                tile.setAttribute("row", i);
+        this.popup = new GameEndedPopup();
+        this.shadowRoot.getElementById("container").appendChild(this.popup);
 
-                this.shadowRoot.getElementById("container").appendChild(tile);
+        const container = this.shadowRoot.getElementById("grid-container");
+
+        let tiles = []
+
+        for(let i = 0; i < this.rowCount; i++) {
+            tiles[i] = []
+            for(let a = 0; a < this.wordLength; a++) {
+                const tile = new Tile(a, i);
+                tiles[i][a] = tile;
+
+                container.appendChild(tile);
             }
         }
     }
@@ -44,53 +50,8 @@ class GameBoard extends HTMLElement {
         this.shadowRoot.appendChild(linkElement);
     }
 
-    applyEventListeners() {
-        document.addEventListener('keydown', (event) => {
-            const pattern = /[a-zA-Z]/;
-
-            if (event.key == 'Backspace') {
-                this.removeLetter();
-            } else if (event.key == "Enter") {
-                this.sendWord();
-            } else if (pattern.test(event.key)) {
-                this.addLetter(event.key);
-            }
-        });
-    }
-
-    removeLetter() {
-        if (this.currentColumn == 0) return;
-
-        this.currentColumn--;
-
-        let currentTile = this.getCurrentTile();
-
-        currentTile.setAttribute('content', "");
-    }
-
-    addLetter(letter) {
-        if (this.currentColumn > 4) return;
-
-        let currentTile = this.getCurrentTile();
-
-        console.log(currentTile);
-
-        console.log(currentTile);
-
-        currentTile.setAttribute('content', letter);
-
-        this.currentColumn++;
-    }
-
-    sendWord() {
-        if (this.currentColumn < 5) return;
-
-        this.currentColumn = 0;
-        this.currentRow++;
-    }
-
-    getCurrentTile() {
-        return this.shadowRoot.querySelector(`tile-element[row="${this.currentRow}"][column="${this.currentColumn}"]`);
+    showPopup(word, score) {
+        
     }
 }
 

@@ -12,10 +12,10 @@ div {
     color: white;
 }
 
-div[status="correct"] {
+div[status="0"] {
     background-color: green;
 }
 
-div[status="wrong-place"] {
+div[status="1"] {
     background-color: orange;
 }

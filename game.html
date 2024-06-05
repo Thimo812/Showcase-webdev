@@ -1,9 +1,40 @@
+<h1 class="header">Vocab voyage</h1>
+
 <template id="gameboard-template">
-    <div id="container" class="board"></div>
+    <div id="container" style="position: relative;">
+        <div id="grid-container" class="board"></div>
+    </div>
 </template>
 
 <template id="tile-template">
     <div id="container" status="default"></div>
 </template>
 
-<game-board></game-board>
+<template id="gamepopup-template">
+    <div class="popup" style="visibility: hidden;">
+        <span>Spel afgelopen!</span>
+        <p id="wordfield">Woord:</p>
+        <p id="scorefield">score:</p>
+    </div> 
+</template>
+
+<div class="game-page" style="display: flex;">
+    <div style="display: flex; flex-direction: column;">
+        <game-board id="player1board"></game-board>
+        <span id="error-span" style="text-align: center; margin-top: 10px; color: red; font-size: 30px; font-weight: 600;"></span>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <game-board id="player2board"></game-board>
+        <span id="opponent-span" style="text-align: center; margin-top: 10px; color: white; font-size: 30px; font-weight: 600;"></span>
+    </div>
+</div>
+
+<div class="game-start" style="display: none;">
+    <p> klik hier om een tegenstander te zoeken</p>
+    <button>Zoek</button>
+</div>
+
+<div class="game-searching" style="display: none;">
+    <loader-element>Zoeken naar een spel</loader-element>
+    <button>annuleren</button>
+</div>

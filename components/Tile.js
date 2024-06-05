@@ -1,11 +1,14 @@
-class Tile extends HTMLElement {
+export default class Tile extends HTMLElement {
 
     shadowRoot;
     templateID = 'tile-template';
 
-    constructor() {
+    constructor(column, row) {
         super();
         this.shadowRoot = this.attachShadow({mode: 'open'});
+
+        this.setAttribute("column", column);
+        this.setAttribute("row", row);
     }
 
     connectedCallback() {
