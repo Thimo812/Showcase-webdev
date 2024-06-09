@@ -5,7 +5,9 @@ export default class SignalRHandler {
     
     constructor() {
         this.connection = new signalR.HubConnectionBuilder()
-            .withUrl("http://localhost:5232/game-hub")
+            .withUrl("https://localhost:7241/game-hub", {
+                accessTokenFactory: () => localStorage.getItem("bearer-token")
+            })
             .configureLogging(signalR.LogLevel.Information)
             .build();
     }
@@ -14,7 +16,6 @@ export default class SignalRHandler {
         try {
             await this.connection.start();
             console.log("SignalR connected");
-            this.findGame();
         } catch (err) {
             console.log(err);
         }

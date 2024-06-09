@@ -20,7 +20,8 @@
         <ul class="mainMenu">
             <li><a href="#cv">Curriculum vitae</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="#game">Vocab Voyage</a></li>
+            <li id="gameHeader"><a href="#game">Vocab Voyage</a></li>
+            <li id="userHeader"><a href="#users">Gebruikers</a></li>
             <li>
                 <div class="dropdown">
                     <a style="display: flex; flex-direction: row;" href="#register"><p id="account-label">Account</p><i class="bi bi-person-circle" style="margin-left: 10px; font-size: 50px;"></i></a>
@@ -54,7 +55,7 @@
 
     <template id="loading-template">
         <div class="loader-container">
-            <h1 id="loading-message"></h1>
+            <p id="loading-message"></p>
             <div class="loader"></div>
         </div>
     </template>

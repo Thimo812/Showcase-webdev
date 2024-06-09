@@ -5,17 +5,40 @@ export default class AccountManager {
         this.checkAccount();
     }
 
-    checkAccount() {
+    async checkAccount() {
         if (localStorage.getItem('bearer-token') == null) {
-            document.getElementById("account-label").innerHTML = 'Account'
-            document.getElementById("register-button").style.display = 'block';
-            document.getElementById("login-button").style.display = 'block';
-            document.getElementById("logout-button").style.display = 'none';
-        } else {
+            this.setLoginStatus(false);
+            return;
+        }
+
+        const response = await fetch('https://localhost:7241/api/Login', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('bearer-token')}` 
+            }
+        });
+        this.setLoginStatus(response.status == 200);
+    }
+
+    setLoginStatus(isLoggedIn) {
+        if (isLoggedIn) {
+            const role = localStorage.getItem("role")
             document.getElementById("account-label").innerHTML = localStorage.getItem('username');
+            document.getElementById("gameHeader").style = `display: ${role == "Admin" || role == "gameUser" ? "flex" : "none"}`
+            document.getElementById("userHeader").style = `display: ${role == "Admin" ? "flex" : "none"}`;
             document.getElementById("register-button").style.display = 'none';
             document.getElementById("login-button").style.display = 'none';
             document.getElementById("logout-button").style.display = 'block';
+        } else {
+            localStorage.removeItem("bearer-token");
+            localStorage.removeItem("refresh-token");
+            localStorage.removeItem("username");
+            document.getElementById("gameHeader").style = "display: none";
+            document.getElementById("userHeader").style = "display: none";
+            document.getElementById("account-label").innerHTML = 'Account';
+            document.getElementById("register-button").style.display = 'block';
+            document.getElementById("login-button").style.display = 'block';
+            document.getElementById("logout-button").style.display = 'none';
         }
     }
 

@@ -60,6 +60,9 @@ class SPAHandler {
                 this.loadModule("/modules/GameManager.js");
                 this.loadModule("/components/GameBoard.js");
                 break;
+            case 'users':
+                this.loadModule("/components/UserListItem.js");
+                this.loadModule("/modules/UserManager.js");
         }
     }
 

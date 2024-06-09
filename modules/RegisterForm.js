@@ -14,6 +14,7 @@ class RegisterForm {
 
             event.preventDefault();
 
+            let mail = form.elements['mail'].value
             let password = form.elements['password'].value;
             let rpassword = form.elements['rpassword'].value;
 
@@ -31,11 +32,12 @@ class RegisterForm {
             grecaptcha.reset();
         
             var json = {
-                "email": form.elements['mail'].value,
+                "email": mail,
                 "password": password
             };
+            console.log(mail)
 
-            this.register();
+            this.register(json);
             
         });
     }

@@ -15,26 +15,29 @@
         <span>Spel afgelopen!</span>
         <p id="wordfield">Woord:</p>
         <p id="scorefield">score:</p>
+        <button id="backButton">Terug</button>
     </div> 
 </template>
 
-<div class="game-page" style="display: flex;">
-    <div style="display: flex; flex-direction: column;">
-        <game-board id="player1board"></game-board>
-        <span id="error-span" style="text-align: center; margin-top: 10px; color: red; font-size: 30px; font-weight: 600;"></span>
-    </div>
-    <div style="display: flex; flex-direction: column;">
-        <game-board id="player2board"></game-board>
-        <span id="opponent-span" style="text-align: center; margin-top: 10px; color: white; font-size: 30px; font-weight: 600;"></span>
+<div id="gameContainer" style="display: none; position: relative;">
+    <div class="game-page">
+        <div style="display: flex; flex-direction: column;">
+            <game-board id="player1board"></game-board>
+            <span id="error-span" style="text-align: center; margin-top: 10px; color: red; font-size: 30px; font-weight: 600;"></span>
+        </div>
+        <div class="player2board">
+            <game-board id="player2board"></game-board>
+            <span id="opponent-span" style="text-align: center; margin-top: 10px; color: white; font-size: 30px; font-weight: 600;"></span>
+        </div>
     </div>
 </div>
 
 <div class="game-start" style="display: none;">
     <p> klik hier om een tegenstander te zoeken</p>
-    <button>Zoek</button>
+    <button id="startButton">Zoek</button>
 </div>
 
 <div class="game-searching" style="display: none;">
     <loader-element>Zoeken naar een spel</loader-element>
-    <button>annuleren</button>
+    <button id="cancelButton">annuleren</button>
 </div>

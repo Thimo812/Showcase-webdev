@@ -282,12 +282,22 @@ display: block;
     margin-top: 50px;
 }
 
+.game-searching {
+    font-size: 16px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+}
+
 .game-start {
     font-size: 16px;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 100px;
 }
 
 .game-start button {
@@ -297,6 +307,38 @@ display: block;
     font-size: 20px;
     border: 4px solid transparent;
     border-radius: 10px;
+}
+
+.game-searching button {
+    color: white;
+    background-color: #44525E;
+    padding: 10px;
+    font-size: 20px;
+    border: 4px solid transparent;
+    border-radius: 10px;
+}
+
+.player2board {
+    display: flex;
+    flex-direction: column;
+}
+
+.userList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0px;
+}
+
+.userHeader {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    color: white;
+    justify-content: space-between;
+    width: 400px;
 }
 
 @keyframes l7 {
@@ -338,6 +380,15 @@ display: block;
 }
 
 @media (max-width: 800px) {
+
+    .player2board {
+        display: none;
+    }
+
+    .userHeader {
+        width: 90vw;
+    }
+
     .page {
         flex-direction: column;
     }

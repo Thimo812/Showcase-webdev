@@ -4,6 +4,8 @@ export default class GameEndedPopup extends HTMLElement {
 
     templateID = 'gamepopup-template';
 
+    backButton;
+
     constructor() {
         super();
         this.shadowRoot = this.attachShadow({mode: 'open'});
@@ -12,6 +14,8 @@ export default class GameEndedPopup extends HTMLElement {
     connectedCallback() {
         this.applyTemplate();
         this.applyStyling();
+
+        this.backButton = this.shadowRoot.getElementById("backButton");
     }
 
     applyTemplate() {
@@ -28,11 +32,14 @@ export default class GameEndedPopup extends HTMLElement {
         this.shadowRoot.appendChild(linkElement);
     }
 
-    show(word, score) {
+    show(winner, score) {
         this.shadowRoot.querySelector("div").style = "visibility: visible";
-        this.shadowRoot.getElementById("wordfield").innerText = `Woord: ${word}`;
+        this.shadowRoot.getElementById("wordfield").innerText = `Winnaar: ${winner}`;
         this.shadowRoot.getElementById("scorefield").innerText = `score: ${score}`;
+    }
+    hide() {
+        this.shadowRoot.querySelector("div").style = "visibility: hidden";
     }
 }
 
-customElements.define("game-popup", GameEndedPopup)
+customElements.define("gameended-popup", GameEndedPopup)

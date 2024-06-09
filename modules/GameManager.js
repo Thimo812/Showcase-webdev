@@ -1,4 +1,5 @@
 import SignalRHandler from "./SignalRHandler.js";
+import GameEndedPopup from "../components/GameEndedPopup.js"
 
 class GameManager {
 
@@ -15,16 +16,27 @@ class GameManager {
     currentRow = 0;
     currentColumn = 0;
 
-    boardActive = true;
+    boardActive = false;
+    gameEnded = false;
+
+    gamePage = document.getElementById("gameContainer")
+    searchPage = document.querySelector(".game-searching");
+    startPage = document.querySelector(".game-start");
+
+    popup;
 
     constructor() {
+        this.popup = new GameEndedPopup();
+        this.gamePage.appendChild(this.popup);
         this.applyEventListeners();
-
         this.signalRHandler.start();
+        this.setPage(this.startPage);
     }
 
     applyEventListeners() {
         document.addEventListener('keydown', (event) => {
+            if (!this.boardActive) return;
+
             const pattern = /[a-zA-Z]/;
 
             if (event.key == 'Backspace') {
@@ -36,31 +48,54 @@ class GameManager {
             }
         });
 
-        this.signalRHandler.connection.on("InvalidWord", (data) => this.showError("Vul een valide woord in"));
+        document.getElementById("startButton").addEventListener("click", () => {
+            this.signalRHandler.findGame();
+        })
 
+        document.getElementById("cancelButton").addEventListener("click", () => {
+            this.signalRHandler.cancelFindGame();
+            this.setPage(this.startPage);
+        })
+
+        this.popup.backButton.addEventListener("click", event => {
+            this.setPage(this.startPage);
+        });
+
+        this.signalRHandler.connection.on("OnPlayerEnqueued", () => this.setPage(this.searchPage));
+        this.signalRHandler.connection.on("InvalidWord", (data) => this.showError("Vul een valide woord in"));
         this.signalRHandler.connection.on("UpdateBoard", (player, data) => {
             const board = this.playerName === player ? this.player1board : this.player2board
             this.renderBoard(data, board);
         });
-
         this.signalRHandler.connection.on("GameStarted", (data) => {
-            document.getElementById("opponent-span").innerText = `Tegenstander: ${data}`
+            this.boardActive = true;
+            this.setPage(this.gamePage);
+            document.getElementById("opponent-span").innerText = `Tegenstander: ${data}`;
         })
-
         this.signalRHandler.connection.on("GameEnded", (winnerName, score) => {
-            console.log(winnerName + score)
+            this.gameEnded = true;
+            this.popup.show(winnerName, score)
+            this.player1board.popup.hide();
+            this.player2board.popup.hide();
         });
-
         this.signalRHandler.connection.on("BoardFull", (player, data, word, score) => {
+            if (player == this.playerName) this.boardActive = false;
             const board = this.playerName === player ? this.player1board : this.player2board
             this.renderBoard(data, board);
-            board.popup.show(word, score);
-            this.boardActive = false;
+            if (!this.gameEnded) board.popup.show(word, score);
         })
     }
 
     getTile(row, column, board) {
         return board.shadowRoot.querySelector(`tile-element[row="${row}"][column="${column}"]`);
+    }
+
+    setPage(page) {
+        this.gamePage.style = "display: none";
+        this.searchPage.style = "display: none";
+        this.startPage.style = "display: none";
+
+        page.style = page == this.gamePage ? "display: block; position: relative;" : "display: flex;";
     }
 
     getCurrentWord() {

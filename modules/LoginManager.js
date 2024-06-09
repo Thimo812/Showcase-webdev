@@ -77,15 +77,17 @@ class LoginManager {
     }
 
     fetchUserName() {
-        fetch('https://localhost:7241/api/User/GetUsername', {
+        fetch('https://localhost:7241/api/User/GetUserData', {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('bearer-token')}` 
+                'Authorization': `Bearer ${localStorage.getItem('bearer-token')}`
             }
         }).then((response) => {
             if (response.ok) {
-                response.text().then((data) => {
-                    localStorage.setItem("username", data);
+                response.json().then((data) => {
+                    console.log(data)
+                    localStorage.setItem("username", data.userName);
+                    localStorage.setItem("role", data.role);
                     this.updateNavBar();
                 });
             }

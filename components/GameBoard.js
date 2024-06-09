@@ -1,4 +1,4 @@
-import GameEndedPopup from "./GameEndedPopup.js";
+import ScorePopup from "./ScorePopup.js";
 import Tile from "./Tile.js";
 
 class GameBoard extends HTMLElement {
@@ -25,7 +25,7 @@ class GameBoard extends HTMLElement {
         let clone = template.content.cloneNode(true);
         this.shadowRoot.appendChild(clone);
 
-        this.popup = new GameEndedPopup();
+        this.popup = new ScorePopup();
         this.shadowRoot.getElementById("container").appendChild(this.popup);
 
         const container = this.shadowRoot.getElementById("grid-container");
@@ -48,10 +48,6 @@ class GameBoard extends HTMLElement {
         linkElement.setAttribute("rel","stylesheet");
         linkElement.setAttribute("href","stylesheets/components/gameboard-styling.css");
         this.shadowRoot.appendChild(linkElement);
-    }
-
-    showPopup(word, score) {
-        
     }
 }
 
