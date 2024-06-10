@@ -24,8 +24,8 @@ export default class AccountManager {
         if (isLoggedIn) {
             const role = localStorage.getItem("role")
             document.getElementById("account-label").innerHTML = localStorage.getItem('username');
-            document.getElementById("gameHeader").style = `display: ${role == "Admin" || role == "gameUser" ? "flex" : "none"}`
-            document.getElementById("userHeader").style = `display: ${role == "Admin" ? "flex" : "none"}`;
+            document.getElementById("gameHeader").style = `display: ${role == "admin" || role == "gameUser" ? "flex" : "none"}`
+            document.getElementById("userHeader").style = `display: ${role == "admin" ? "flex" : "none"}`;
             document.getElementById("register-button").style.display = 'none';
             document.getElementById("login-button").style.display = 'none';
             document.getElementById("logout-button").style.display = 'block';
